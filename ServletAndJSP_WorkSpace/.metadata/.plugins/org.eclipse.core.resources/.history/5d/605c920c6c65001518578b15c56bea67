@@ -1,0 +1,15 @@
+package email;
+
+import java.util.Properties;
+
+public class SendMail {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Properties props=new Properties();
+		props.setProperty("mail.host", "mail.gail.com");
+		props.setProperty("mail.smtp.port", "26");
+		props.setProperty("", "");
+	}
+
+}

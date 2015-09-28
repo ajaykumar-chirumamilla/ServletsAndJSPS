@@ -1,0 +1,50 @@
+package email;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+   
+public class SendMail {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Properties props=new Properties();
+		props.setProperty("mail.transport.protocol", "smtp");   
+	    props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "465");
+		
+		Authenticator auth=new Authenticator(){
+			protected PasswordAuthentication getPasswordAuthentication(){
+				return new PasswordAuthentication("ajaykumar2789@gmail.com", "Ajay1205862797Gmail");
+			}
+		};
+		
+		Session session=Session.getDefaultInstance(props,auth);
+		Message msg=new MimeMessage(session);
+		try {
+			msg.setSubject("Test from java program");
+			msg.setText("Hello Ajay, \n This is a message from my java program");
+			msg.setFrom(new InternetAddress("ajaykumar2789@gmail.com","Ajay Kumar Chirumamilla"));
+			msg.setRecipient(Message.RecipientType.TO, new InternetAddress("ajaykumar2789@gmail.com"));
+			Transport.send(msg);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Finished..");
+	}
+
+}

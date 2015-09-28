@@ -1,0 +1,39 @@
+package email;
+
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.internet.MimeMessage;
+   
+public class SendMail {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Properties props=new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		
+		Authenticator auth=new Authenticator(){
+			protected PasswordAuthentication getPasswordAuthentication(){
+				return new PasswordAuthentication("ajaykumar2789@gmail.com", "Ajay1205862797Gmail");
+			}
+		};
+		
+		Session session=Session.getDefaultInstance(props,auth);
+		Message msg=new MimeMessage(session);
+		try {
+			msg.setSubject("Test from java program");
+			msg.setText("Hello Ajay, \n This is a message from my java program");
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+}

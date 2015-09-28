@@ -1,0 +1,21 @@
+package email;
+
+import java.util.Properties;
+
+import sun.security.krb5.internal.Authenticator;
+
+public class SendMail {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Properties props=new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		
+		Authenticator auth=new Authenticator(){
+			
+		}
+	}
+
+}
